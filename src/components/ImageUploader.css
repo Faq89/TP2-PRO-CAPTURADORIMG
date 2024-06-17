@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%; /* Ancho del contenedor al 50% del ancho del viewport */
+    width: 100%; /* Ancho del contenedor al 50% del ancho del viewport */
     margin: auto; /* Centra el contenedor horizontalmente */
     min-height: calc(100vh - 70px); /* Calcula la altura mínima del contenedor para ocupar toda la altura menos 70px (para el footer) */
     padding-bottom: 30px; /* Espacio inferior adicional */

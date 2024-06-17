@@ -1,4 +1,3 @@
-// src/server/server.mjs
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -19,7 +18,9 @@ if (!MONGO_URI) {
 }
 console.log('MONGO_URI:', MONGO_URI);
 
-mongoose.connect(MONGO_URI);
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB', err));
 
 const userSchema = new mongoose.Schema({
   id: { type: String, unique: true, required: true },
@@ -48,6 +49,25 @@ app.post('/register', async (req, res) => {
       }
     }
     res.json({ success: false, message: 'Error en el registro' });
+  }
+});
+
+// Nuevo endpoint para obtener datos con filtros
+app.get('/api/users', async (req, res) => {
+  const { id, nombre, apellido, fechaRegistro, email } = req.query;
+  let filter = {};
+
+  if (id) filter.id = id;
+  if (nombre) filter.nombre = new RegExp(nombre, 'i'); // Case insensitive
+  if (apellido) filter.apellido = new RegExp(apellido, 'i'); // Case insensitive
+  if (fechaRegistro) filter.fechaRegistro = fechaRegistro;
+  if (email) filter.email = new RegExp(email, 'i'); // Case insensitive
+
+  try {
+    const users = await User.find(filter);
+    res.json(users);
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

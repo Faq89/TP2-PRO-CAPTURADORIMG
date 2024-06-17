@@ -1,0 +1,78 @@
+.container {
+
+    display: flex;
+    justify-content: center;
+    height: calc(70vh - 60px); /* Ajusta según la altura de tu header/footer */
+    font-family: 'Larken', sans-serif;
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    
+    
+  }
+  
+  form {
+    font-family: 'Larken', sans-serif; 
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.834);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+  }
+  
+  :placeholder-shown {
+    font-family: 'Larken', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  
+  }
+  
+  
+  input {
+    font-family: 'Larken', sans-serif;
+    padding: 10px;
+    margin: 20px;
+    align-items: baseline;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    justify-content: space-between;
+
+  }
+
+  table {
+    font-family: 'Larken', sans-serif;
+    width: 100%;
+    border-collapse: collapse; /* Colapsa los bordes de la tabla */
+  }
+  
+  th, td {
+    border: 1px solid black; /* Bordes negros para celdas y encabezados */
+    padding: 8px;
+  }
+  
+  th {
+    text-align: center; /* Centra el texto en el encabezado */
+  }
+  
+  td {
+    text-align: left; /* Alinea el texto a la izquierda en las celdas */
+  }
+  
+  tr {
+    width: auto;
+    justify-content: center;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo alterno para filas pares */
+  }
+  
+  
+  
+  
+
+  
+  

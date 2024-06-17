@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './DataList.css'
 
 const DataList = () => {
   const [data, setData] = useState([]);
@@ -22,7 +23,7 @@ const DataList = () => {
 
   useEffect(() => {
     fetchData();
-  }, [filters]);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,13 +41,6 @@ const DataList = () => {
     <div>
       <h1>Data List</h1>
       <div>
-        <input
-          type="text"
-          name="id"
-          placeholder="ID"
-          value={filters.id}
-          onChange={handleInputChange}
-        />
         <input
           type="text"
           name="nombre"
@@ -88,15 +82,21 @@ const DataList = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((user) => (
-            <tr key={user._id}>
-              <td>{user.id}</td>
-              <td>{user.nombre}</td>
-              <td>{user.apellido}</td>
-              <td>{user.fechaRegistro}</td>
-              <td>{user.email}</td>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan="5">No data found</td>
             </tr>
-          ))}
+          ) : (
+            data.map((user) => (
+              <tr key={user._id}>
+                <td>{user.id}</td>
+                <td>{user.nombre}</td>
+                <td>{user.apellido}</td>
+                <td>{user.fechaRegistro}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
