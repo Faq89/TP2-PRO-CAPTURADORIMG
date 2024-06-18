@@ -12,60 +12,66 @@ const port = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-const MONGO_URI = "mongodb+srv://facundoledesma89:jOSwVHw0Hfs1Yohs@weatherapp.mkfsymc.mongodb.net/";
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://facundoledesma89:jOSwVHw0Hfs1Yohs@weatherapp.mkfsymc.mongodb.net/";
 if (!MONGO_URI) {
   throw new Error('La variable de entorno MONGO_URI no está definida');
 }
 console.log('MONGO_URI:', MONGO_URI);
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
-const userSchema = new mongoose.Schema({
+const clienteSchema = new mongoose.Schema({
   id: { type: String, unique: true, required: true },
+  CUIT: { type: String, unique: true, required: true }, // Nuevo campo CUIT
   email: { type: String, unique: true, required: true },
   nombre: String,
   apellido: String,
   fechaRegistro: String,
 });
 
-const User = mongoose.model('User', userSchema);
+const Cliente = mongoose.model('Cliente', clienteSchema);
 
 app.post('/register', async (req, res) => {
-  const { id, email, nombre, apellido, fechaRegistro } = req.body;
+  const { id, CUIT, email, nombre, apellido, fechaRegistro } = req.body;
 
   try {
-    const newUser = new User({ id, email, nombre, apellido, fechaRegistro });
-    await newUser.save();
+    const newCliente = new Cliente({ id, CUIT, email, nombre, apellido, fechaRegistro });
+    await newCliente.save();
     res.json({ success: true, message: 'Usuario registrado con éxito' });
   } catch (error) {
     if (error.code === 11000) { // Duplicate key error
       if (error.keyPattern.id) {
         return res.json({ success: false, message: 'El ID ya está en uso' });
       }
+      if (error.keyPattern.CUIT) {
+        return res.json({ success: false, message: 'El CUIT ya está en uso' });
+      }
       if (error.keyPattern.email) {
         return res.json({ success: false, message: 'El email ya está en uso' });
       }
+      
     }
     res.json({ success: false, message: 'Error en el registro' });
   }
 });
 
 // Nuevo endpoint para obtener datos con filtros
-app.get('/api/users', async (req, res) => {
-  const { id, nombre, apellido, fechaRegistro, email } = req.query;
+app.get('/api/clientes', async (req, res) => {
+  const { id, CUIT, email, nombre, apellido, fechaRegistro } = req.query;
   let filter = {};
 
   if (id) filter.id = id;
+  if (CUIT) filter.CUIT = CUIT;
+  if (email) filter.email = new RegExp(email, 'i'); // Case insensitive
   if (nombre) filter.nombre = new RegExp(nombre, 'i'); // Case insensitive
   if (apellido) filter.apellido = new RegExp(apellido, 'i'); // Case insensitive
   if (fechaRegistro) filter.fechaRegistro = fechaRegistro;
-  if (email) filter.email = new RegExp(email, 'i'); // Case insensitive
 
   try {
-    const users = await User.find(filter);
-    res.json(users);
+    const clientes = await Cliente.find(filter);
+    res.json(clientes);
   } catch (error) {
     res.status(500).send(error);
   }

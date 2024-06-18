@@ -1,0 +1,53 @@
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+div {
+    font-family: 'Larken', sans-serif;
+}
+
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #dee2e6;
+    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    
+    overflow-y: auto; /* Permite desplazamiento si el contenido es mayor que la altura de la pantalla */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+}
+
+/* Main content styles */
+.main-content {
+    /* Deja espacio para la sidebar */
+    padding: 20px;
+    flex: 1;
+   
+    
+}
+
+.MenuConteiner {
+    padding: 20px;
+    height: 100%;
+    overflow: auto; /* Permite desplazamiento si el contenido es mayor que la altura disponible */
+    
+}
+
+.main-content > * {
+    max-width: 100%; /* Asegura que el contenido no desborde */
+   
+    
+}

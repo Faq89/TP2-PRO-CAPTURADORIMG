@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './DataList.css'
+import './DataList.css';
 
 const DataList = () => {
   const [data, setData] = useState([]);
   const [filters, setFilters] = useState({
     id: '',
+    CUIT: '', // Corregido para que coincida con el nombre del campo en el esquema de Mongoose
     nombre: '',
     apellido: '',
     fechaRegistro: '',
@@ -14,7 +15,7 @@ const DataList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users', { params: filters });
+      const response = await axios.get('http://localhost:5000/api/clientes', { params: filters });
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -23,7 +24,7 @@ const DataList = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // Dependencia vacía para que se ejecute solo una vez al montar el componente
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,28 +39,14 @@ const DataList = () => {
   };
 
   return (
-    <div>
+    <div className='containerData'>
       <h1>Data List</h1>
-      <div>
+      <div className='box'>
         <input
           type="text"
-          name="nombre"
-          placeholder="Nombre"
-          value={filters.nombre}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="apellido"
-          placeholder="Apellido"
-          value={filters.apellido}
-          onChange={handleInputChange}
-        />
-        <input
-          type="date"
-          name="fechaRegistro"
-          placeholder="Fecha de Registro"
-          value={filters.fechaRegistro}
+          name="CUIT" // Corregido para que coincida con el nombre del campo en el esquema de Mongoose
+          placeholder="CUIT"
+          value={filters.CUIT}
           onChange={handleInputChange}
         />
         <input
@@ -75,25 +62,27 @@ const DataList = () => {
         <thead>
           <tr>
             <th>ID</th>
+            <th>CUIT</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Fecha de Registro</th>
             <th>Email</th>
+            <th>Alta</th>
           </tr>
         </thead>
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan="5">No data found</td>
+              <td colSpan="6">No data found</td>
             </tr>
           ) : (
-            data.map((user) => (
-              <tr key={user._id}>
-                <td>{user.id}</td>
-                <td>{user.nombre}</td>
-                <td>{user.apellido}</td>
-                <td>{user.fechaRegistro}</td>
-                <td>{user.email}</td>
+            data.map((cliente) => (
+              <tr key={cliente._id}>
+                <td>{cliente.id}</td>
+                <td>{cliente.CUIT}</td>
+                <td>{cliente.nombre}</td>
+                <td>{cliente.apellido}</td>
+                <td>{cliente.email}</td>
+                <td>{cliente.fechaRegistro}</td>
               </tr>
             ))
           )}

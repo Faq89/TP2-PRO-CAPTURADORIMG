@@ -15,7 +15,6 @@ import MenuPanel from './components/MenuPanel'; // Ajusta la ruta según sea nec
 ReactDOM.createRoot(document.getElementById('root')).render(
 <React.StrictMode>
 <Background/>
-
 <Header/>
 <MenuPanel/>
 <Footer/>
