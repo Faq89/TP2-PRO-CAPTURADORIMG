@@ -32,6 +32,7 @@ const Header = () => {
       <nav className="nav">
         <a href="../Index.html" className="navLink alignCenter">Home</a>
         <a href="../Registrarse.html" className="navLink alignCenter">Registrarse</a>  
+        <a href="../Menu.html" className="navLink alignCenter">Menu</a> 
         <a href="../" className="navLink alignCenter">Login</a>                 
       </nav>
     </header>

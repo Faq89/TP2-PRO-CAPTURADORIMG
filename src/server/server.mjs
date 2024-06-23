@@ -1,80 +1,82 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
-app.use(bodyParser.json());
-app.use(cors());
+app.use(express.json());
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://facundoledesma89:jOSwVHw0Hfs1Yohs@weatherapp.mkfsymc.mongodb.net/";
-if (!MONGO_URI) {
-  throw new Error('La variable de entorno MONGO_URI no está definida');
-}
-console.log('MONGO_URI:', MONGO_URI);
+// Conectar a MongoDB
+mongoose.connect('MONGO_URI=mongodb+srv://facundoledesma89:jOSwVHw0Hfs1Yohs@weatherapp.mkfsymc.mongodb.net/', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Could not connect to MongoDB', err));
+// Definir los esquemas
+const facturaSchema = new mongoose.Schema({
+  fecha: Date,
+  tipoFactura: String,
+  numeroFactura: String,
+  puntoDeVenta: String,
+  CUIT: String,
+  razonSocial: String,
+  importeTotal: Number,
+  importeNetoGravado: Number,
+  IVA: Number
+});
 
 const clienteSchema = new mongoose.Schema({
-  id: { type: String, unique: true, required: true },
-  CUIT: { type: String, unique: true, required: true }, // Nuevo campo CUIT
-  email: { type: String, unique: true, required: true },
-  nombre: String,
-  apellido: String,
-  fechaRegistro: String,
+  CUIT: String,
+  domicilioFiscal: String,
+  razonSocial: String,
+  condicionFrenteAlIVA: String,
+  facturas: [facturaSchema]
 });
 
-const Cliente = mongoose.model('Cliente', clienteSchema);
-
-app.post('/register', async (req, res) => {
-  const { id, CUIT, email, nombre, apellido, fechaRegistro } = req.body;
-
-  try {
-    const newCliente = new Cliente({ id, CUIT, email, nombre, apellido, fechaRegistro });
-    await newCliente.save();
-    res.json({ success: true, message: 'Usuario registrado con éxito' });
-  } catch (error) {
-    if (error.code === 11000) { // Duplicate key error
-      if (error.keyPattern.id) {
-        return res.json({ success: false, message: 'El ID ya está en uso' });
-      }
-      if (error.keyPattern.CUIT) {
-        return res.json({ success: false, message: 'El CUIT ya está en uso' });
-      }
-      if (error.keyPattern.email) {
-        return res.json({ success: false, message: 'El email ya está en uso' });
-      }
-      
-    }
-    res.json({ success: false, message: 'Error en el registro' });
-  }
+const userSchema = new mongoose.Schema({
+  CUIT: String,
+  domicilioFiscal: String,
+  razonSocial: String,
+  condicionFrenteAlIVA: String,
+  clientes: [clienteSchema]
 });
 
-// Nuevo endpoint para obtener datos con filtros
-app.get('/api/clientes', async (req, res) => {
-  const { id, CUIT, email, nombre, apellido, fechaRegistro } = req.query;
-  let filter = {};
+const User = mongoose.model('User', userSchema);
 
-  if (id) filter.id = id;
-  if (CUIT) filter.CUIT = CUIT;
-  if (email) filter.email = new RegExp(email, 'i'); // Case insensitive
-  if (nombre) filter.nombre = new RegExp(nombre, 'i'); // Case insensitive
-  if (apellido) filter.apellido = new RegExp(apellido, 'i'); // Case insensitive
-  if (fechaRegistro) filter.fechaRegistro = fechaRegistro;
+// Ruta para registrar un cliente
+app.post('/api/clientes', async (req, res) => {
+  const { userId, cliente } = req.body;
+  const user = await User.findById(userId);
+  user.clientes.push(cliente);
+  await user.save();
+  res.status(201).send(user);
+});
 
+// Ruta para registrar un usuario
+app.post('/api/users', async (req, res) => {
+  const { CUIT, domicilioFiscal, razonSocial, condicionFrenteAlIVA } = req.body;
+  const newUser = new User({
+    CUIT,
+    domicilioFiscal,
+    razonSocial,
+    condicionFrenteAlIVA,
+    clientes: [] // Inicialmente vacío
+  });
   try {
-    const clientes = await Cliente.find(filter);
-    res.json(clientes);
+    await newUser.save();
+    res.status(201).send(newUser);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(400).send(error);
   }
+});
+// Ruta para registrar una factura
+app.post('/api/facturas', async (req, res) => {
+  const { userId, clienteId, factura } = req.body;
+  const user = await User.findById(userId);
+  const cliente = user.clientes.id(clienteId);
+  cliente.facturas.push(factura);
+  await user.save();
+  res.status(201).send(user);
 });
 
 app.listen(port, () => {
