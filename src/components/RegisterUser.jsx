@@ -3,10 +3,8 @@ import axios from 'axios';
 
 const RegisterUser = () => {
   const [user, setUser] = useState({
-    CUIT: '',
-    domicilioFiscal: '',
-    razonSocial: '',
-    condicionFrenteAlIVA: '',
+    usuario: '',
+    password: '', // Añadir el campo de contraseña
   });
 
   const handleChange = (e) => {
@@ -32,34 +30,19 @@ const RegisterUser = () => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        name="CUIT"
-        value={user.CUIT}
+        name="usuario"
+        value={user.usuario}
         onChange={handleChange}
-        placeholder="CUIT"
+        placeholder="Usuario"
         required
       />
+
       <input
-        type="text"
-        name="domicilioFiscal"
-        value={user.domicilioFiscal}
+        type="password"
+        name="password"
+        value={user.password}
         onChange={handleChange}
-        placeholder="Domicilio Fiscal"
-        required
-      />
-      <input
-        type="text"
-        name="razonSocial"
-        value={user.razonSocial}
-        onChange={handleChange}
-        placeholder="Razón Social"
-        required
-      />
-      <input
-        type="text"
-        name="condicionFrenteAlIVA"
-        value={user.condicionFrenteAlIVA}
-        onChange={handleChange}
-        placeholder="Condición frente al IVA"
+        placeholder="Contraseña"
         required
       />
       <button type="submit">Registrar Usuario</button>
