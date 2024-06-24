@@ -5,17 +5,20 @@ import Header from './components/Header.jsx';
 import Background from './components/Background.jsx';
 import Footer from './components/Footer.jsx';
 import './assets/fonts/fonts.css';
-import './components/HomePage.css';
+import './components/General.css';
 import './components/Footer.css';
+import App from './App';
+import RegisterUser from './components/RegisterUser';
 
-import Login from './components/Login.jsx';
+
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Header />
-    <Login/>
-
+   
+    <App />
+    <RegisterUser/>
     <Background />
     <Footer />
   </React.StrictMode>

@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(80vh - 60px);
+  }
+  
+  .form-container {
+    max-width: 400px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.834);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Añadir sombra al contenedor */
+  
+  }
+  
+  .heading {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Larken', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-bottom: 15px;
+    
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .button {
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+    
+  }
+  
+  .button:hover {
+    background-color: #6c3483;
+  }
+  
+  .message-container {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .success-message {
+    color: #4caf50;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  .error-message {
+    color: #f44336;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  

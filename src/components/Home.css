@@ -1,73 +1,65 @@
 .home-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    height: calc(70vh - 60px); /* Ajusta según la altura de tu header/footer */
-    
-    
-  }
-  
-  .home-content {
-    flex: 1;
-    max-width: 50%;
-    background-color: rgba(255, 255, 255, 0.834); /* Fondo gris transparente */
-    padding: 20px;
-    border-radius:10px 0px 0px 10px;
-    margin: auto;
-    
-  }
-  
-  .main-heading {
-    font-size: 3.5em;
-    margin-bottom: 10px;
-    font-family: 'Larken', sans-serif;
-    text-shadow: 4px 4px 6px 4px rgb(255, 255, 255); 
-  }
-  
-  .sub-heading {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    text-align: center;
-    text-shadow: 4px 4px 6px 4px rgb(255, 255, 255); 
- 
-    
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: calc(70vh - 60px); /* Ajusta según la altura de tu header/footer */
+}
 
-  .button-container {
-    display: flex;
-    justify-content: center; /* Centra el botón horizontalmente */
-  }
-  
-  .register-button {
-    background-color: #8E44AD; /* Morado */
-    color: white; /* Letras blancas */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .register-button:hover {
-    background-color: #6C3483; /* Morado más claro */
-  }
-  
-  .image-container {
-    flex: 1;
+.home-content {
+  flex: 1;
+  max-width: 50%;
+  background-color: rgba(255, 255, 255, 0.834); /* Fondo gris transparente */
+  padding: 20px;
+  border-radius: 10px 0px 0px 10px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido verticalmente */
+}
+
+.main-heading {
+  font-size: 3.5em;
+  margin-bottom: 10px;
+  font-family: 'Larken', sans-serif;
+  text-shadow: 4px 4px 6px 4px rgb(255, 255, 255);
+}
+
+.sub-heading {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 4px 4px 6px 4px rgb(255, 255, 255);
+}
+
+.register-button {
+  background-color: #8e44ad; /* Morado */
+  color: white; /* Letras blancas */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Espacio arriba del botón */
+}
+
+.register-button:hover {
+  background-color: #6c3483; /* Morado más claro */
+}
+
+.image-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; 
-  margin:auto
-  }
-  
-  .home-image {
-   
-    max-width: 100%;
-    height: auto;
-    border-radius: 0px 10px 10px 0px;
-    margin: auto;
+  height: 100%;
+  margin: auto;
+}
 
-  }
+.home-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0px 10px 10px 0px;
+  margin: auto;
+}

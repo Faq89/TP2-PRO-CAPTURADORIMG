@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ImageUploader from './ImageUploader';
-import DataList from './DataList';
-import AddCliente from './AddCliente';
+import FacturaForm from './FacturaForm';
 import './MenuPanel.css'; // Importa el archivo CSS
 
 const MenuPanel = () => {
@@ -13,14 +12,13 @@ const MenuPanel = () => {
         <div className="sidebar">
           <ul>
             <li>
-              <Link to="/nuevo-cliente">Nuevo Cliente</Link>
+              <Link to="/Reg-Manual-Fac">Reg. Factura Manual</Link>
             </li>
+
             <li>
-              <Link to="/carga-de-comprobantes">Carga de Comprobantes</Link>
+              <Link to="/Reg-Img-Fac">Reg Img Factura</Link>
             </li>
-            <li>
-              <Link to="/informes">Informes</Link>
-            </li>
+
           </ul>
         </div>
 
@@ -28,9 +26,9 @@ const MenuPanel = () => {
         <div className="main-content">
           <div className="MenuConteiner">
             <Routes>
-              <Route path="/nuevo-cliente" element={<AddCliente />} />
-              <Route path="/carga-de-comprobantes" element={<ImageUploader />} />
-              <Route path="/informes" element={<DataList />} />
+              <Route path="/Reg-Manual-Fac" element={<FacturaForm />} />
+              <Route path="/Reg-Img-Fac" element={<ImageUploader />} />
+
               <Route path="/" element={<div>Seleccione una opción del menú</div>} />
             </Routes>
           </div>

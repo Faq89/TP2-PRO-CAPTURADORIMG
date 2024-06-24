@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import "./FacturaForm.css";
 
 const FacturaForm = () => {
   const [formData, setFormData] = useState({
-    tipoOperacion: "", // Nuevo campo para tipo de operación
+    tipoOperacion: "",
     razonSocial: "",
     cuit: "",
     tipoFactura: "",
@@ -13,13 +13,13 @@ const FacturaForm = () => {
     numeroComprobante: "",
     importeTotalNeto: "",
     iva: "",
-    importeTotal: ""
+    importeTotal: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -35,106 +35,106 @@ const FacturaForm = () => {
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
-      <FormControl fullWidth margin="normal">
-        <InputLabel>Tipo de Operación</InputLabel>
-        <Select
-          label="Tipo de Operación"
+      <label>
+        Tipo de Operación:
+        <select
           name="tipoOperacion"
           value={formData.tipoOperacion}
           onChange={handleChange}
         >
-          <MenuItem value="compra">Compra</MenuItem>
-          <MenuItem value="venta">Venta</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField
-        label="Razón Social"
-        name="razonSocial"
-        value={formData.razonSocial}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="CUIT"
-        name="cuit"
-        value={formData.cuit}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      />
-      <FormControl fullWidth margin="normal">
-        <InputLabel>Tipo de Factura</InputLabel>
-        <Select
-          label="Tipo de Factura"
+          <option value="">Seleccione...</option>
+          <option value="compra">Compra</option>
+          <option value="venta">Venta</option>
+        </select>
+      </label>
+      <label>
+        Razón Social:
+        <input
+          type="text"
+          name="razonSocial"
+          value={formData.razonSocial}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        CUIT:
+        <input
+          type="text"
+          name="cuit"
+          value={formData.cuit}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Tipo de Factura:
+        <select
           name="tipoFactura"
           value={formData.tipoFactura}
           onChange={handleChange}
         >
-          <MenuItem value="A">A</MenuItem>
-          <MenuItem value="B">B</MenuItem>
-          <MenuItem value="C">C</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField
-        label="Fecha de Facturación"
-        name="fechaFacturacion"
-        value={formData.fechaFacturacion}
-        onChange={handleChange}
-        type="date"
-        fullWidth
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <TextField
-        label="Punto de Venta"
-        name="puntoVenta"
-        value={formData.puntoVenta}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Número de Comprobante"
-        name="numeroComprobante"
-        value={formData.numeroComprobante}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Importe Total Neto"
-        name="importeTotalNeto"
-        value={formData.importeTotalNeto}
-        onChange={handleChange}
-        type="number"
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="IVA"
-        name="iva"
-        value={formData.iva}
-        onChange={handleChange}
-        type="number"
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        label="Importe Total"
-        name="importeTotal"
-        value={formData.importeTotal}
-        onChange={handleChange}
-        type="number"
-        fullWidth
-        margin="normal"
-      />
-      <Button type="submit" variant="contained" color="primary" fullWidth>
-        Registrar Factura
-      </Button>
+          <option value="">Seleccione...</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </label>
+      <label>
+        Fecha de Facturación:
+        <input
+          type="date"
+          name="fechaFacturacion"
+          value={formData.fechaFacturacion}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Punto de Venta:
+        <input
+          type="text"
+          name="puntoVenta"
+          value={formData.puntoVenta}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Número de Comprobante:
+        <input
+          type="text"
+          name="numeroComprobante"
+          value={formData.numeroComprobante}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Importe Total Neto:
+        <input
+          type="number"
+          name="importeTotalNeto"
+          value={formData.importeTotalNeto}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        IVA:
+        <input
+          type="number"
+          name="iva"
+          value={formData.iva}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Importe Total:
+        <input
+          type="number"
+          name="importeTotal"
+          value={formData.importeTotal}
+          onChange={handleChange}
+        />
+      </label>
+      <button type="submit">Registrar Factura</button>
     </form>
   );
 };

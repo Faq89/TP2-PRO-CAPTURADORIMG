@@ -4,6 +4,7 @@ import axios from 'axios';
 import DownloadButton from './DownloadButton';
 import './ImageUploader.css';
 
+
 const ImageUploader = () => {
     const [image, setImage] = useState(null);
     const [text, setText] = useState('');
@@ -58,7 +59,7 @@ const ImageUploader = () => {
         <div className="container"> 
             <input type="file" accept="image/jpeg, image/png" onChange={handleImageUpload} />
             {image && <img src={URL.createObjectURL(image)} alt="Uploaded" className="image" />}
-            <button onClick={analyzeImage} className="button">Analizar imagen</button>
+            <button onClick={analyzeImage} >Analizar imagen</button>
             {text && (
                 <>
                     <pre className="text">{text}</pre>

@@ -6,7 +6,7 @@ import ImageUploader from './components/ImageUploader.jsx';
 import Background from './components/Background.jsx';
 import Footer from './components/Footer.jsx';
 import './assets/fonts/fonts.css';
-import './components/HomePage.css';
+import './components/General.css';
 import './components/Footer.css';
 
 
