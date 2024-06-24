@@ -1,5 +1,5 @@
 /** @jsxImportSource react */
-import HeaderPrivado from "./components/HeaderPrivado";   
+
 import Footer from "./components/Footer";
 import Background from "./components/Background";
 import React from "react";
