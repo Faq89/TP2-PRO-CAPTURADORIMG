@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { TextField, Button, Container, Typography } from '@mui/material';
 
 const RegisterUser = () => {
   const [user, setUser] = useState({
     usuario: '',
-    password: '', // Añadir el campo de contraseña
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -18,7 +19,7 @@ const RegisterUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users', user);
+      const response = await axios.post('http://127.0.0.1:3001/api/users', user);
       console.log('User registered successfully:', response.data);
       // Aquí puedes agregar cualquier lógica adicional como redirigir al usuario
     } catch (error) {
@@ -27,26 +28,35 @@ const RegisterUser = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="usuario"
-        value={user.usuario}
-        onChange={handleChange}
-        placeholder="Usuario"
-        required
-      />
-
-      <input
-        type="password"
-        name="password"
-        value={user.password}
-        onChange={handleChange}
-        placeholder="Contraseña"
-        required
-      />
-      <button type="submit">Registrar Usuario</button>
-    </form>
+    <Container maxWidth="sm">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Registrar Usuario
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Usuario"
+          name="usuario"
+          value={user.usuario}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Contraseña"
+          name="password"
+          type="password"
+          value={user.password}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Registrar Usuario
+        </Button>
+      </form>
+    </Container>
   );
 };
 

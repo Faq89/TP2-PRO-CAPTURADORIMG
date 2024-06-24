@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
+import Factura from './Factura.js'; // Asegúrate de que la ruta sea correcta
 
 const app = express();
 const port = 3001;
@@ -61,6 +62,19 @@ app.post('/api/login', async (req, res) => {
   } catch (error) {
     console.error('Error al iniciar sesión:', error);
     res.status(500).send({ error: 'Error al iniciar sesión' });
+  }
+});
+
+// Ruta para registrar una factura
+app.post('/api/facturas', async (req, res) => {
+  const { tipoOperacion, razonSocial, cuit, tipoFactura, fechaFacturacion, puntoVenta, numeroComprobante, importeTotalNeto, iva, importeTotal } = req.body;
+  try {
+    const newFactura = new Factura({ tipoOperacion, razonSocial, cuit, tipoFactura, fechaFacturacion, puntoVenta, numeroComprobante, importeTotalNeto, iva, importeTotal });
+    await newFactura.save();
+    res.status(201).send(newFactura);
+  } catch (error) {
+    console.error('Error al registrar la factura:', error);
+    res.status(400).send({ error: 'Error al registrar la factura' });
   }
 });
 

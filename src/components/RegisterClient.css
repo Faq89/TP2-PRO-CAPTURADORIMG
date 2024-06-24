@@ -1,0 +1,41 @@
+.register-client-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .register-client-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .register-client-form input {
+    margin: 5px;
+    padding: 10px;
+    width: 300px;
+  }
+  
+  .register-client-form button {
+    margin-top: 10px;
+    padding: 10px 20px;
+  }
+  
+  .clients-table {
+    width: 80%;
+    border-collapse: collapse;
+  }
+  
+  .clients-table th, .clients-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .clients-table th {
+    background-color: #f2f2f2;
+  }
+  
+  
