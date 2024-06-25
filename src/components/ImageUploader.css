@@ -1,81 +1,62 @@
-
-
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%; /* Ancho del contenedor al 50% del ancho del viewport */
-    margin: auto; /* Centra el contenedor horizontalmente */
-    min-height: calc(100vh - 70px); /* Calcula la altura mínima del contenedor para ocupar toda la altura menos 70px (para el footer) */
-    padding-bottom: 30px; /* Espacio inferior adicional */
-    padding-top: 30px; /* Espacio superior */
-    background-color: rgba(255, 255, 255, 0.834); /* Fondo gris transparente */
-    position: relative; /* Asegura que el contenedor se coloque correctamente en relación con otros elementos */
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    
-  }
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%; /* Ancho del contenedor al 90% del ancho del viewport */
+  margin: auto; /* Centra el contenedor horizontalmente */
+  min-height: calc(100vh - 70px); /* Calcula la altura mínima del contenedor para ocupar toda la altura menos 70px (para el footer) */
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.834); /* Fondo gris transparente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
 
 .image {
-    margin-top: 20px;
-    max-width: 200px;
-    max-height: 200px; /* Ejemplo: limita la altura de la imagen */
-    
+  margin-top: 20px;
+  max-width: 100%;
+  height: 250px; /* Para mantener la proporción de la imagen */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.selectContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
 }
 
 .button {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+  flex: 1; /* Ocupa todo el espacio disponible */
+  background-color: #8E44AD;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.text {
-    font-family: 'Larken', sans-serif; 
-    margin-top: 20px;
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    text-align: center;
-    max-width: 80%;
-    max-height: fit-content;
+.button:hover {
+  background-color: #BD10E0;
 }
 
-
-body, button, input, .navbar {
-    font-family: 'Larken', serif;
-  }
-
-button, input[type="button"], input[type="submit"], .navbar {
-    background-color: #8E44AD;
-    font-family: 'Larken', sans-serif;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover, input[type="button"]:hover, input[type="submit"]:hover, .navbar:hover {
-    background-color:#BD10E0;
-  }
-  
-  button:active, input[type="button"]:active, input[type="submit"]:active, .navbar:active {
-    background-color: #8E44AD;
-  }
-  
-  button.secondary, input[type="button"].secondary, input[type="submit"].secondary, .navbar.secondary {
-    background-color: #9013FE;
-  }
-  
-  button.secondary:hover, input[type="button"].secondary:hover, input[type="submit"].secondary:hover, .navbar.secondary:hover {
-    background-color: var(#BD10E0);
-  }
-  
-  button.secondary:active, input[type="button"].secondary:active, input[type="submit"].secondary:active, .navbar.secondary:active {
-    background-color: #D2B4DE;
-  }
+.button:active {
+  background-color: #8E44AD;
+}

@@ -158,7 +158,7 @@ const ImageUploader = () => {
                     <option value="Venta">Venta</option>
                 </select>
             </div>
-            <button onClick={analyzeImage}>Analizar imagen</button>
+            <button className="AnalizarButton" onClick={analyzeImage}>Analizar imagen</button>
             {text && !showFilteredData && (
                 <pre className="text">{text}</pre>
             )}

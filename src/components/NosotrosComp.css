@@ -1,0 +1,28 @@
+.nosotros-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .main-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .text {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .floating-image {
+    width: 200px;
+    height: auto;
+  }
