@@ -56,7 +56,7 @@ const Header = () => {
       <img src={logo} alt="Logo" className="logo" />
       <nav className="nav">
         <a href="../Index.html" className="navLink alignCenter">Home</a>
-       
+        <a href="../Nosotros.html" className="navLink alignCenter">Nosotros</a>
         <button className="navLink alignCenter" onClick={toggleLoginMenu}>
           Login
         </button>
