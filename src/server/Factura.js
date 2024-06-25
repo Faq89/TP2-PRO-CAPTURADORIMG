@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
 
 const facturaSchema = new mongoose.Schema({
-  tipoOperacion: { type: String, required: true }, // Nuevo campo
-  razonSocial: { type: String, required: true },
-  cuit: { type: String, required: true },
-  tipoFactura: { type: String, required: true },
-  fechaFacturacion: { type: Date, required: true },
-  puntoVenta: { type: String, required: true },
-  numeroComprobante: { type: String, required: true },
-  importeTotalNeto: { type: Number, required: true },
-  iva: { type: Number, required: true },
-  importeTotal: { type: Number, required: true }
+  tipoOperacion: { type: String, required: false }, // Nuevo campo
+  razonSocial: { type: String, required: false },
+  cuit: { type: String, required: false },
+  tipoFactura: { type: String, required: false },
+  fechaFacturacion: { type: Date, required: false },
+  puntoVenta: { type: String, required: false },
+  numeroComprobante: { type: String, required: false },
+  importeTotalNeto: { type: Number, required: false },
+  iva: { type: Number, required: false },
+  importeTotal: { type: Number, required: false }
 });
 
 const Factura = mongoose.model('Factura', facturaSchema);
