@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import triunviImage from '../assets/Triunvipc2.png'; // Asegúrate de que la ruta sea correcta
+import triunviImage from '../assets/Triunvipc2.jpg'; // Asegúrate de que la ruta sea correcta
 
 const Home = () => {
   const handleRegistrarseClick = () => {

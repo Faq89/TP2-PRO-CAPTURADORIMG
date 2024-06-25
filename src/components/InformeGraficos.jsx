@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import './InformeGrafico.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -64,9 +65,9 @@ const InformesGrafico = () => {
   };
 
   return (
-    <div>
+    <div className="MenuConteiner">
       <h2>Informes Gráfico</h2>
-      <div style={{ width: '600px', height: '400px' }}>
+      <div style={{ width: '800px', height: '400px' }}>
         <Bar data={data} options={options} />
       </div>
       <div>

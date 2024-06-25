@@ -62,30 +62,32 @@ const Header = () => {
         </button>
       </nav>
       {showLoginMenu && (
-        <div className="loginDropdown">
-          <form onSubmit={handleLogin}>
+        <div className="loginMenu">
+          <form className="loginForm" onSubmit={handleLogin}>
             <div className="form-group">
-              <label htmlFor="usuario">Usuario:</label>
+              <label htmlFor="usuario">User:</label>
               <input
                 type="text"
                 id="usuario"
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
+                className="inputField"
                 required
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Contraseña:</label>
+              <label htmlFor="password">Pass:</label>
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="inputField"
                 required
               />
             </div>
             {error && <div className="error">{error}</div>}
-            <button type="submit">Iniciar Sesión</button>
+            <button type="submit" className="loginSubmitButton">Iniciar Sesión</button>
           </form>
         </div>
       )}

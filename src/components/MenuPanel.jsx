@@ -6,6 +6,7 @@ import './MenuPanel.css'; // Importa el archivo CSS
 import FacturasEdit from './FacturasEdit';
 import InformesGrafico from './InformeGraficos';
 
+
 const MenuPanel = () => {
   return (
     <Router>
@@ -23,7 +24,7 @@ const MenuPanel = () => {
               <Link to="/Edit-Fac-charge">Ver Facturas</Link>
             </li>
             <li>
-              <Link to="/Ver-inf-graf">Imf. Grafico</Link>
+              <Link to="/Ver-inf-graf">Inf. Grafico</Link>
             </li>
           </ul>
         </div>

@@ -1,0 +1,106 @@
+/* Paleta de colores */
+:root {
+    --blue: #4A90E2;
+    --light-blue: #50E3C2;
+    --purple: #9013FE;
+    --light-purple: #BD10E0;
+    --violet: #8E44AD;
+    --light-violet: #D2B4DE;
+  }
+  
+  /* Establecer la fuente para todos los elementos */
+  body, button, input, .navbar {
+    font-family: 'Larken', serif;
+  }
+  
+  /* Estilos para h1 */
+  h1 {
+    color: var(--purple);
+    font-family: 'Larken', sans-serif; /* Esto sobrescribe el 'Larken' que definiste arriba */
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid var(--light-purple);
+  }
+  /* Estilos para botones */
+  button, input[type="button"], input[type="submit"], .navbar {
+    background-color: var(--violet);
+    font-family: 'Larken', sans-serif;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover, input[type="button"]:hover, input[type="submit"]:hover, .navbar:hover {
+    background-color: var(--light-purple);
+  }
+  
+  button:active, input[type="button"]:active, input[type="submit"]:active, .navbar:active {
+    background-color: var(--violet);
+  }
+  
+  button.secondary, input[type="button"].secondary, input[type="submit"].secondary, .navbar.secondary {
+    background-color: var(--purple);
+  }
+  
+  button.secondary:hover, input[type="button"].secondary:hover, input[type="submit"].secondary:hover, .navbar.secondary:hover {
+    background-color: var(--light-purple);
+  }
+  
+  button.secondary:active, input[type="button"].secondary:active, input[type="submit"].secondary:active, .navbar.secondary:active {
+    background-color: var(--light-violet);
+  }
+  
+  /* src/index.css */
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('./assets/TriunviBackground.jpg'); /* Ajusta la ruta según corresponda */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    font-family: 'Larken', serif;
+    padding-bottom: 70px; /* Espacio suficiente para el footer fijo */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
+  }
+  
+  /* Contenedor general */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 1200px) {
+    .container {
+      max-width: 1000px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .container {
+      max-width: 750px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      max-width: 500px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .container {
+      max-width: 100%;
+      padding: 0 10px;
+    }
+  }
+  
+  

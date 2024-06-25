@@ -4,6 +4,7 @@ import axios from 'axios';
 import logo from '../assets/Triunvi.png'; // Asegúrate de que la ruta sea correcta
 import './Header.css'; // Importa los estilos CSS
 
+
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para controlar si el usuario está autenticado
 

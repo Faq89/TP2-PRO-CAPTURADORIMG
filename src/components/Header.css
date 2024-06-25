@@ -1,81 +1,74 @@
-/** @jsxImportSource react */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  position: relative; /* Asegura que los elementos absolutos se alineen correctamente */
+}
+
+.logo {
+  height: 80px;
+}
+
+.nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+}
+
+.loginMenu {
+  position: absolute;
+  top: 180%; /* Cambia esto para ajustar la posición vertical */
+  transform: translateY(-50%); /* Centra verticalmente el formulario */
+  right: 0;
+  background-color: #444;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   
-  .logo {
-    height: 80px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  width: 300px; /* Ancho del menú de login */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+   /* Alinea los elementos de forma horizontal */
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  margin-right: 10px;
+  flex-shrink: 0; /* Evita que el label se reduzca */
   
-  .nav {
-    display: flex;
-    gap: 15px;
-    align-items: center; /* Alineación vertical centrada */
-    
-  }
+}
+
+.inputField {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  width: auto; /* Ancho automático para ocupar el espacio restante */
+  min-width: 0; /* Permitir que el input se reduzca */
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #888;
+}
+
+.loginSubmitButton {
+  background-color: #8E44AD;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px; /* Espacio superior */
+  align-self: center; /* Centra el botón dentro del contenedor */
   
-  .navLink {
-    color: white;
-    text-decoration: none;
-    
-  }
-  
-  .alignCenter {
-    display: flex;
-    align-items: center;
-    height: 100%; /* Ajusta la altura para alinear con el botón */
-    
-  }
-  
-  .loginContainer {
-    position: relative;
-  }
-  
-  .loginButton {
-    background-color: #8E44AD; /* Morado */
-    color: white; /* Letras blancas */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    
-  }
-  
-  .loginMenu {
-    position: absolute;
-    top: 100%; /* Ajusta según tu diseño */
-    right: 0;
-    background-color: #444;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    
-  }
-  
-  .inputField {
-    width: 200px;
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 3px;
-    border: 1px solid #888;
-  }
-  
-  .loginSubmitButton {
-    background-color: #8E44AD; /* Morado */
-    color: white; /* Letras blancas */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    
-  }
-  
+}
