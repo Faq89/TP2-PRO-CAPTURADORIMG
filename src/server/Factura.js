@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const facturaSchema = new mongoose.Schema({
-  tipoOperacion: { type: String, required: false }, // Nuevo campo
+  tipoOperacion: { type: String, required: false },
   razonSocial: { type: String, required: false },
   cuit: { type: String, required: false },
   tipoFactura: { type: String, required: false },
-  fechaFacturacion: { type: Date, required: false },
+  fechaFacturacion: { type: String, required: false }, // Cambiado a String
   puntoVenta: { type: String, required: false },
   numeroComprobante: { type: String, required: false },
   importeTotalNeto: { type: Number, required: false },

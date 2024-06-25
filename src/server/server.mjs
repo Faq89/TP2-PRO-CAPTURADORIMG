@@ -78,6 +78,52 @@ app.post('/api/facturas', async (req, res) => {
   }
 });
 
+// Nueva ruta para obtener todas las facturas
+app.get('/api/facturas', async (req, res) => {
+  try {
+    const facturas = await Factura.find();
+    res.status(200).send(facturas);
+  } catch (error) {
+    console.error('Error al obtener las facturas:', error);
+    res.status(500).send({ error: 'Error al obtener las facturas' });
+  }
+});
+
+// Ruta para eliminar una factura
+app.delete('/api/facturas/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const factura = await Factura.findByIdAndDelete(id);
+    if (!factura) {
+      return res.status(404).send({ error: 'Factura no encontrada' });
+    }
+    res.status(200).send({ message: 'Factura eliminada exitosamente' });
+  } catch (error) {
+    console.error('Error al eliminar la factura:', error);
+    res.status(500).send({ error: 'Error al eliminar la factura' });
+  }
+});
+
+// Ruta para modificar una factura
+app.put('/api/facturas/:id', async (req, res) => {
+  const { id } = req.params;
+  const { tipoOperacion, razonSocial, cuit, tipoFactura, fechaFacturacion, puntoVenta, numeroComprobante, importeTotalNeto, iva, importeTotal } = req.body;
+  try {
+    const factura = await Factura.findByIdAndUpdate(
+      id,
+      { tipoOperacion, razonSocial, cuit, tipoFactura, fechaFacturacion, puntoVenta, numeroComprobante, importeTotalNeto, iva, importeTotal },
+      { new: true }
+    );
+    if (!factura) {
+      return res.status(404).send({ error: 'Factura no encontrada' });
+    }
+    res.status(200).send(factura);
+  } catch (error) {
+    console.error('Error al modificar la factura:', error);
+    res.status(500).send({ error: 'Error al modificar la factura' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://127.0.0.1:${port}`);
 });

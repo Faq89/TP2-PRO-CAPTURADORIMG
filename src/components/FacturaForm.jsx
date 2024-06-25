@@ -16,10 +16,6 @@ const FacturaForm = () => {
     importeTotal: "",
   });
 
-  const [facturas, setFacturas] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editIndex, setEditIndex] = useState(-1);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -30,20 +26,8 @@ const FacturaForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (isEditing) {
-        // Handle editing
-        const updatedFacturas = facturas.map((factura, index) =>
-          index === editIndex ? formData : factura
-        );
-        setFacturas(updatedFacturas);
-        setIsEditing(false);
-        setEditIndex(-1);
-        alert("Factura actualizada exitosamente");
-      } else {
-        await axios.post("http://127.0.0.1:3001/api/facturas", formData);
-        setFacturas([...facturas, formData]);
-        alert("Factura registrada exitosamente");
-      }
+      await axios.post("http://127.0.0.1:3001/api/facturas", formData);
+      alert("Factura registrada exitosamente");
       setFormData({
         tipoOperacion: "",
         razonSocial: "",
@@ -60,17 +44,6 @@ const FacturaForm = () => {
       console.error("Error al registrar la factura:", error);
       alert("Error al registrar la factura");
     }
-  };
-
-  const handleEdit = (index) => {
-    setFormData(facturas[index]);
-    setIsEditing(true);
-    setEditIndex(index);
-  };
-
-  const handleDelete = (index) => {
-    const updatedFacturas = facturas.filter((_, i) => i !== index);
-    setFacturas(updatedFacturas);
   };
 
   return (
@@ -178,46 +151,8 @@ const FacturaForm = () => {
             />
           </label>
         </div>
-        <button type="submit">{isEditing ? "Guardar Cambios" : "Registrar Factura"}</button>
+        <button type="submit">Registrar Factura</button>
       </form>
-
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Tipo de Operación</th>
-            <th>Razón Social</th>
-            <th>CUIT</th>
-            <th>Tipo de Factura</th>
-            <th>Fecha de Facturación</th>
-            <th>Punto de Venta</th>
-            <th>Número de Comprobante</th>
-            <th>Importe Total Neto</th>
-            <th>IVA</th>
-            <th>Importe Total</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {facturas.map((factura, index) => (
-            <tr key={index}>
-              <td>{factura.tipoOperacion}</td>
-              <td>{factura.razonSocial}</td>
-              <td>{factura.cuit}</td>
-              <td>{factura.tipoFactura}</td>
-              <td>{factura.fechaFacturacion}</td>
-              <td>{factura.puntoVenta}</td>
-              <td>{factura.numeroComprobante}</td>
-              <td>{factura.importeTotalNeto}</td>
-              <td>{factura.iva}</td>
-              <td>{factura.importeTotal}</td>
-              <td>
-                <button onClick={() => handleEdit(index)}>Editar</button>
-                <button onClick={() => handleDelete(index)}>Eliminar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 };
