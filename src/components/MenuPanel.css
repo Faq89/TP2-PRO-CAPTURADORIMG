@@ -35,13 +35,13 @@ div {
 }
 
 .sidebar li {
-    margin: 20px 0;
+    margin: 20px 0 20px 0;
 }
 
 .sidebar li a {
     color: #ffffff;
     text-decoration:dotted;
-    padding: 10px 15px;
+    padding: 10px 15px 10px 15px;
     display: block;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
@@ -78,4 +78,18 @@ div {
 .sidebar li a.active {
     background-color: #495057;
     color: #ffffff;
+}
+
+.logout-button {
+    background-color: #8E44AD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
+    margin-top: 10px;
+    width: 100%;
 }

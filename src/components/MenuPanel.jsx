@@ -8,9 +8,16 @@ import InformesGrafico from './InformeGraficos';
 
 const MenuPanel = () => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+  };
+
+  const handleLogout = () => {
+    // Aquí podrías agregar lógica adicional para hacer logout en el backend si es necesario
+    setIsLoggedIn(false); // Actualizamos el estado para indicar que el usuario está deslogueado
+    window.location.href = '../Index.html'; // Redireccionamos al usuario a Index.html
   };
 
   const menuItems = [
@@ -38,9 +45,10 @@ const MenuPanel = () => {
               </li>
             ))}
           </ul>
+          <button onClick={handleLogout} className="logout-button">
+            Logout
+          </button>
         </div>
-
-
         {/* Main Content */}
         <div className="main-content">
           <div className="MenuConteiner">
@@ -49,7 +57,6 @@ const MenuPanel = () => {
               <Route path="/Reg-Img-Fac" element={<ImageUploader />} />
               <Route path="/Edit-Fac-charge" element={<FacturasEdit />} />
               <Route path="/Ver-inf-graf" element={<InformesGrafico />} />
-
               <Route path="/" element={<div>Seleccione una opción del menú</div>} />
             </Routes>
           </div>

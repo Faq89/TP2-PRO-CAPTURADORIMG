@@ -1,5 +1,4 @@
 /** @jsxImportSource react */
-import HeaderPrivado from "./components/HeaderPrivado";   
 import Footer from "./components/Footer";
 import Background from "./components/Background";
 import React from "react";
@@ -16,7 +15,7 @@ import MenuPanel from './components/MenuPanel'; // Ajusta la ruta según sea nec
 ReactDOM.createRoot(document.getElementById('root')).render(
 <React.StrictMode>
 <Background/>
-<HeaderPrivado/>
+
 <MenuPanel/>
 </React.StrictMode>
 )
