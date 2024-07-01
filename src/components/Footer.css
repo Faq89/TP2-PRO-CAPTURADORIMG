@@ -39,13 +39,12 @@
   
   .socialMenu {
     position: absolute;
-    top: -185%;
-    right: 0;
+    top: -230%;
     background-color: #444;
-    padding: 15px 80px 15px 80px;
+    padding: 15px 40px 15px 40px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    right: -19%;
+    right: -4%;
     display: flex;
     flex-direction: column;
    

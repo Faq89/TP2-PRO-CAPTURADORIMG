@@ -1,20 +1,28 @@
 /* NosotrosComp.css */
 .nosotros-container {
   text-align: center;
-  padding: 20px 40px 40px; /* Reduce the top padding */
+  padding: 20px 40px 40px; /* Ajusta el padding según sea necesario */
   background: linear-gradient(135deg, #1f1c2c, #928dab);
   color: #fff;
   font-family: 'Arial', sans-serif;
-  border-radius: 10px;
+
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  margin-top: 0; /* Ensure no top margin */
+  margin-top: 0; /* Asegura que no haya margen superior */
 }
 
-.nosotros-container h1 {
-  font-size: 2.5em;
+.nosotros-container h1
+ {
+  font-size: 2.5em; /* Ajusta el tamaño del título según sea necesario */
   margin-bottom: 20px;
-  margin-top: 0; /* Reduce the top margin */
+  text-align: center; /* Centra los títulos */
+  margin-top: 0; /* Ajusta el margen superior del título */
 }
+
+h2 {
+  margin-left: 30%;
+  text-align: center; /* Centra los títulos */
+}
+
 
 .main-image {
   width: 100%;
@@ -36,11 +44,13 @@
   flex: 1;
   font-size: 1.1em;
   line-height: 1.6;
+  text-align: justify; /* Justifica el texto */
 }
 
 .floating-image {
+  margin-top: 100px;
   width: 300px;
   height: auto;
-  border-radius: 50px;
+  border-radius: 150px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }

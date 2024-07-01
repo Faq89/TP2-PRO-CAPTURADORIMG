@@ -61,7 +61,7 @@
 .slider {
   width: 100%; /* Ajusta el ancho del slider */
   overflow: hidden;
-  border-radius: 30px; /* Redondea los bordes del contenedor del slider */
+  border-radius: 10px; /* Redondea los bordes del contenedor del slider */
   box-shadow: 0 4px 8px rgba(128, 111, 129, 0.596); /* Agrega sombra al contenedor del slider */
 }
 

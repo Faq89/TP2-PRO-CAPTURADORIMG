@@ -57,7 +57,7 @@ const Header = () => {
       <nav className="nav">
         <a href="../Index.html" className="navLink alignCenter">Home</a>
         <a href="../Nosotros.html" className="navLink alignCenter">Nosotros</a>
-        <button className="navLink alignCenter" onClick={toggleLoginMenu}>
+        <button className="navLinkButton" onClick={toggleLoginMenu}>
           Login
         </button>
       </nav>
