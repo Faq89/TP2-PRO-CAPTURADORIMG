@@ -15,11 +15,14 @@ div {
     background: #b399c4;
     padding: 20px;
     border-right: 1px solid #dee2e6;
-    height: 150%; /* Ocupa todo el alto de la pantalla */
-    overflow-y: absolute; /* Permite desplazamiento si el contenido es mayor que la altura de la pantalla */
-    position: absolute;
+    height: 100%; /* Ajusta la altura al 100% del viewport */
+    position: fixed; /* Fija la barra lateral */
+    top: 0;
+    left: 0;
+    bottom: 0; /* Ocupa todo el alto disponible */
+    overflow-y: auto; /* Permite desplazamiento si el contenido es mayor que la altura */
     transition: transform 0.3s ease-in-out;
-    transform: translateX(0);
+    z-index: 1000; /* Asegura que la barra lateral esté sobre el contenido */
 }
 
 .sidebar.hidden {

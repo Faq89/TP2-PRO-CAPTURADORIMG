@@ -18,6 +18,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <Background/>
 <HeaderPrivado/>
 <MenuPanel/>
-<Footer/>
 </React.StrictMode>
 )
