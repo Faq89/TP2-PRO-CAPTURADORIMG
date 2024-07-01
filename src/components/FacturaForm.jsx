@@ -18,18 +18,31 @@ const FacturaForm = () => {
     importeTotal: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const [alertState, setAlertState] = useState({
     open: false,
     severity: "success",
     message: "",
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let updatedFormData = { ...formData, [name]: value };
+
+    // Calculate importeTotalNeto and iva based on importeTotal
+    if (name === "importeTotal") {
+      const importeTotal = parseFloat(value);
+      const importeTotalNeto = (importeTotal / 1.21).toFixed(2); // Assuming 21% IVA
+      const iva = (importeTotal - importeTotalNeto).toFixed(2);
+
+      updatedFormData = {
+        ...updatedFormData,
+        importeTotalNeto: importeTotalNeto,
+        iva: iva,
+      };
+    }
+
+    setFormData(updatedFormData);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +70,7 @@ const FacturaForm = () => {
           ...alertState,
           open: false,
         });
-      }, 3000); // 3000 milisegundos (3 segundos)
+      }, 1000); // 1000 milisegundos (1 segundo)
     } catch (error) {
       console.error("Error al registrar la factura:", error);
       setAlertState({
@@ -65,6 +78,12 @@ const FacturaForm = () => {
         severity: "error",
         message: "Error al registrar la factura",
       });
+      setTimeout(() => {
+        setAlertState({
+          ...alertState,
+          open: false,
+        });
+      }, 1000); // 1000 milisegundos (1 segundo)
     }
   };
 
@@ -152,6 +171,7 @@ const FacturaForm = () => {
               name="importeTotalNeto"
               value={formData.importeTotalNeto}
               onChange={handleChange}
+              readOnly // Bloquear la edición
             />
           </label>
           <label>
@@ -161,6 +181,7 @@ const FacturaForm = () => {
               name="iva"
               value={formData.iva}
               onChange={handleChange}
+              readOnly // Bloquear la edición
             />
           </label>
           <label>

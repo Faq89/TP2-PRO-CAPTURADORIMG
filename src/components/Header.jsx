@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../assets/Triunvi.png'; // Asegúrate de que la ruta sea correcta
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import './Header.css'; // Importa los estilos CSS
 
 const Header = () => {
@@ -48,6 +50,11 @@ const Header = () => {
       } else {
         setError('Error de conexión. Por favor, intente más tarde.');
       }
+
+      // Establece el tiempo para limpiar el error después de 1 segundo
+      setTimeout(() => {
+        setError('');
+      }, 1000); // 1000 milisegundos (1 segundo)
     }
   };
 
@@ -86,7 +93,14 @@ const Header = () => {
                 required
               />
             </div>
-            {error && <div className="error">{error}</div>}
+            {error && (
+              <div className="floating-alert">
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                  {error}
+                </Alert>
+              </div>
+            )}
             <button type="submit" className="loginSubmitButton">Iniciar Sesión</button>
           </form>
         </div>

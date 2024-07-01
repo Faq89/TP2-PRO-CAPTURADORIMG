@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import './RegisterUser.css'; // Importa los estilos CSS
 
 const RegisterUser = () => {
@@ -24,6 +26,9 @@ const RegisterUser = () => {
       const response = await axios.post('http://127.0.0.1:3001/api/users', user);
       console.log('User registered successfully:', response.data);
       setSuccessMessage('¡Usuario registrado exitosamente!');
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 2000); // 2000 milisegundos (2 segundos)
       setErrorMessage('');
       setUser({
         usuario: '',
@@ -38,6 +43,9 @@ const RegisterUser = () => {
       } else {
         setErrorMessage('¡Ocurrió un error al registrar el usuario! Por favor, inténtalo nuevamente.');
       }
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 2000); // 2000 milisegundos (2 segundos)
       setSuccessMessage('');
     }
   };
@@ -74,13 +82,19 @@ const RegisterUser = () => {
           </button>
         </form>
         {successMessage && (
-          <div className="message-container">
-            <p className="success-message">{successMessage}</p>
+          <div className="floating-alert">
+            <Alert severity="success">
+              <AlertTitle>Éxito</AlertTitle>
+              {successMessage}
+            </Alert>
           </div>
         )}
         {errorMessage && (
-          <div className="message-container">
-            <p className="error-message">{errorMessage}</p>
+          <div className="floating-alert">
+            <Alert severity="error">
+              <AlertTitle>Error</AlertTitle>
+              {errorMessage}
+            </Alert>
           </div>
         )}
       </div>

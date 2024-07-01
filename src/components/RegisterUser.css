@@ -80,4 +80,11 @@
     font-size: 1.2em;
     text-align: center;
   }
+  .floating-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 300px; /* Ajusta según el diseño deseado */
+  }
   
