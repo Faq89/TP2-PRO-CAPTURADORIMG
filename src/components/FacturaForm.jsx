@@ -173,7 +173,9 @@ const FacturaForm = () => {
             />
           </label>
         </div>
-        <button type="submit">Registrar Factura</button>
+        <div className="button-container">
+          <button type="submit">Registrar Factura</button>
+        </div>
       </form>
       {alertState.open && (
         <div className="floating-alert">

@@ -1,3 +1,15 @@
+:root {
+  --primary-color: #4A90E2;
+  --secondary-color: #50E3C2;
+  --error-color: #E74C3C;
+  --success-color: #2ECC71;
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --border-color: #ddd;
+  --violet: #8E44AD;
+  --light-purple: #D2B4DE;
+  --purple: #9013FE;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -15,27 +27,25 @@
   padding-bottom: 10px; /* Añade un padding al final del contenedor */
 }
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333; /* Color de texto */
-}
-
 .image {
-  max-width: 100%;
+  max-width: 200px;
   margin-top: 20px;
   border: 1px solid #ddd; /* Añade un borde ligero */
   padding: 5px;
   border-radius: 8px; /* Bordes redondeados */
-  background-color: white;
+
 }
 
-.selectContainer {
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
+input[type="file"] {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content; /* Ajusta el ancho al contenido */
+    max-width: 100%; /* Ancho máximo permitido */
+  
 }
+
 
 .label {
   margin-right: 10px;
@@ -46,6 +56,7 @@
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 5px; /* Bordes redondeados */
+ 
 }
 
 .buttonContainer {
@@ -84,21 +95,6 @@
   text-align: center;
 }
 
-
-.alert {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #bf6cd8; /* Color de fondo rojo */
-  color: white; /* Color de texto blanco */
-  padding: 15px; /* Espaciado interior */
-  border-radius: 5px; /* Bordes redondeados */
-  z-index: 1000; /* Z-index alto para estar sobre otros elementos */
-  display: none; /* Inicialmente oculto */
-}
-
-
 .alert.show {
   display: block;
   opacity: 1;
@@ -106,4 +102,11 @@
 
 .alert-success {
   background-color: #4caf50;
+}
+h1 {
+  color: var(--purple);
+  font-family: 'Larken', sans-serif;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid var(--light-purple);
 }

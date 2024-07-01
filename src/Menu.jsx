@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client';
 import './components/Footer.css';
 import './components/Header.css';
 import './components/Background.css';
-import './components/General.css'
+
 
 import MenuPanel from './components/MenuPanel'; // Ajusta la ruta según sea necesario
 

@@ -6,20 +6,59 @@
   --light-purple: #BD10E0;
   --violet: #8E44AD;
   --light-violet: #D2B4DE;
+  --green: #2ECC71;
+  --light-green: #ABEBC6;
+  --red: #E74C3C;
+  --light-red: #F5B7B1;
 }
+
+.container {
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 8px;
+
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
 
 /* Establecer la fuente para todos los elementos */
 body, button, input, .navbar {
   font-family: 'Larken', serif;
 }
 
-/* Estilos para h1 */
-h1 {
+/* Estilos para h2 */
+h2 {
   color: var(--purple);
-  font-family: 'Larken', sans-serif; /* Esto sobrescribe el 'Larken' que definiste arriba */
+  font-family: 'Larken', sans-serif;
   text-align: center;
   padding: 10px;
   border-bottom: 2px solid var(--light-purple);
+}
+
+/* Estilos para el formulario */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="date"], input[type="number"], select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
 }
 
 /* Estilos para botones */
@@ -34,6 +73,7 @@ button, input[type="button"], input[type="submit"], .navbar {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover, .navbar:hover {
@@ -56,42 +96,85 @@ button.secondary:active, input[type="button"].secondary:active, input[type="subm
   background-color: var(--light-violet);
 }
 
-/* src/index.css */
-body {
-  margin: 0;
-  padding: 0;
-  background-image: url('./assets/TriunviBackground.jpg'); /* Ajusta la ruta según corresponda */
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  width: 100%;
-  font-family: 'Larken', serif;
-  padding-bottom: 70px; /* Espacio suficiente para el footer fijo */
-  box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
+/* Estilos para botones pequeños */
+button.edit {
+  background-color: var(--green);
+  padding: 5px 10px;
+  font-size: 12px;
 }
 
-/* Contenedor general */
-.container {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 15px;
+button.edit:hover {
+  background-color: var(--light-green);
 }
 
+button.edit:active {
+  background-color: var(--green);
+}
+
+button.delete {
+  background-color: var(--red);
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+button.delete:hover {
+  background-color: var(--light-red);
+}
+
+button.delete:active {
+  background-color: var(--red);
+}
+
+/* Estilos para la tabla */
 table {
   border-collapse: collapse;
   width: 100%;
-  table-layout: fixed; /* Asegura que todas las celdas tengan el mismo tamaño */
-  font-size: 14px; /* Ajusta el tamaño de la fuente */
+  table-layout: fixed;
+  font-size: 14px;
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 2px solid #000000;
   text-align: left;
-  padding: 12px; /* Ajusta el padding según sea necesario */
-  width: 25%; /* Asegura que todas las celdas tengan el mismo ancho */
+  padding: 12px;
+  width: 25%;
+  max-height: 3em;
+  overflow: hidden;
+  white-space: pre-wrap;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+.alert {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #fff;
+  width: 250px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.alert.show {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  background-color: #28a745; /* Verde */
+}
+
+.alert.error.show {
+  background-color: #dc3545; /* Rojo */
+}
+/* Agrega estos estilos para los iconos */
+.actions-column .edit-icon, .actions-column .delete-icon {
+  cursor: pointer;
+  color: #007bff; /* Color de editar */
+  margin-right: 8px; /* Espacio entre iconos */
+}
+
+.actions-column .delete-icon {
+  color: #dc3545; /* Color de eliminar */
 }

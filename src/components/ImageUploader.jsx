@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ImageUploader.css';
+import { Button, TextField, Select, MenuItem, Snackbar, Alert } from '@mui/material';
 
 const ImageUploader = () => {
     const [image, setImage] = useState(null);
@@ -24,9 +25,7 @@ const ImageUploader = () => {
     const analyzeImage = async () => {
         if (!image) {
             setShowAlert(true); // Mostrar alerta si no hay imagen seleccionada
-            setTimeout(() => {
-                setShowAlert(false); // Ocultar alerta después de 2 segundos
-            }, 2000);
+            setTimeout(() => setShowAlert(false), 2000); // Ocultar alerta después de 2 segundos
             return;
         }
 
@@ -121,9 +120,7 @@ const ImageUploader = () => {
             // Realizar la solicitud POST a la API para guardar los datos
             await axios.post('http://127.0.0.1:3001/api/facturas', filteredData);
             setShowSaveAlert(true); // Mostrar alerta de guardado en base de datos
-            setTimeout(() => {
-                setShowSaveAlert(false); // Ocultar alerta después de 2 segundos
-            }, 2000);
+            setTimeout(() => setShowSaveAlert(false), 2000); // Ocultar alerta después de 2 segundos
         } catch (error) {
             console.error('Error al guardar en la base de datos: ', error);
             alert('Error al guardar en la base de datos. Intente nuevamente más tarde');
@@ -153,9 +150,7 @@ const ImageUploader = () => {
             document.body.removeChild(a);
 
             setShowDownloadAlert(true); // Mostrar alerta de descarga de datos
-            setTimeout(() => {
-                setShowDownloadAlert(false); // Ocultar alerta después de 2 segundos
-            }, 2000);
+            setTimeout(() => setShowDownloadAlert(false), 2000); // Ocultar alerta después de 2 segundos
         } else {
             alert('No hay datos filtrados para descargar');
         }
@@ -163,7 +158,7 @@ const ImageUploader = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Registro Automático de Facturas</h1>
+            <h2>Registro Automático de Facturas</h2>
             <input type="file" accept="image/jpeg, image/png" onChange={handleImageUpload} />
             {image && <img src={URL.createObjectURL(image)} alt="Uploaded" className="image" />}
             <div className="selectContainer">
@@ -186,17 +181,29 @@ const ImageUploader = () => {
                 <h3>Datos Filtrados de la Factura</h3>
                 {Object.keys(filteredData).length > 0 ? (
                     <>
-                        <button className="button" onClick={handleGuardarEnBaseDeDatos}>Guardar en base de datos</button>
-                        <button className="button" onClick={downloadFilteredData}>Descargar datos filtrados en TXT</button>
+                        <button className="button" onClick={handleGuardarEnBaseDeDatos}>Registrar</button>
+                        <button className="button" onClick={downloadFilteredData}>Descargar</button>
                     </>
                 ) : (
-                    <p>Analiza una imagen para ver los datos filtrados</p>
+                    <p></p>
                 )}
             </div>
-            {/* Alertas */}
-            <div className={`alert ${showAlert ? 'show' : ''}`}>Por favor, selecciona una imagen válida</div>
-            <div className={`alert ${showSaveAlert ? 'show' : ''}`}>Datos guardados en la base de datos con éxito</div>
-            <div className={`alert ${showDownloadAlert ? 'show' : ''}`}>Datos descargados en TXT con éxito</div>
+            {/* Snackbar para mostrar alertas */}
+            <Snackbar open={showAlert} autoHideDuration={2000} onClose={() => setShowAlert(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+                <Alert severity="error" onClose={() => setShowAlert(false)}>
+                    Error: Por favor, selecciona una imagen válida
+                </Alert>
+            </Snackbar>
+            <Snackbar open={showSaveAlert} autoHideDuration={2000} onClose={() => setShowSaveAlert(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+                <Alert severity="success" onClose={() => setShowSaveAlert(false)}>
+                    Éxito: Datos guardados en la base de datos
+                </Alert>
+            </Snackbar>
+            <Snackbar open={showDownloadAlert} autoHideDuration={2000} onClose={() => setShowDownloadAlert(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+                <Alert severity="success" onClose={() => setShowDownloadAlert(false)}>
+                    Éxito: Datos descargados en TXT
+                </Alert>
+            </Snackbar>
         </div>
     );
 };
