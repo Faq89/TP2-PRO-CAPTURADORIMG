@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import "./FacturaForm.css";
 
 const FacturaForm = () => {
@@ -23,11 +25,21 @@ const FacturaForm = () => {
     });
   };
 
+  const [alertState, setAlertState] = useState({
+    open: false,
+    severity: "success",
+    message: "",
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post("http://127.0.0.1:3001/api/facturas", formData);
-      alert("Factura registrada exitosamente");
+      setAlertState({
+        open: true,
+        severity: "success",
+        message: "Factura registrada exitosamente",
+      });
       setFormData({
         tipoOperacion: "",
         razonSocial: "",
@@ -40,9 +52,19 @@ const FacturaForm = () => {
         iva: "",
         importeTotal: "",
       });
+      setTimeout(() => {
+        setAlertState({
+          ...alertState,
+          open: false,
+        });
+      }, 3000); // 3000 milisegundos (3 segundos)
     } catch (error) {
       console.error("Error al registrar la factura:", error);
-      alert("Error al registrar la factura");
+      setAlertState({
+        open: true,
+        severity: "error",
+        message: "Error al registrar la factura",
+      });
     }
   };
 
@@ -153,6 +175,14 @@ const FacturaForm = () => {
         </div>
         <button type="submit">Registrar Factura</button>
       </form>
+      {alertState.open && (
+        <div className="floating-alert">
+          <Alert severity={alertState.severity}>
+            <AlertTitle>{alertState.severity === "success" ? "Éxito" : "Error"}</AlertTitle>
+            {alertState.message}
+          </Alert>
+        </div>
+      )}
     </div>
   );
 };

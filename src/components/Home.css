@@ -1,65 +1,93 @@
 .home-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   padding: 20px;
-  height: calc(70vh - 60px); /* Ajusta según la altura de tu header/footer */
+  min-height: calc(100vh - 70px); /* Ajusta según la altura de tu header/footer */
+  background-image: url("triunviBackgroun.jpg");
+  position: relative; /* Para trabajar con z-index */
+  z-index: 1;
 }
 
-.home-content {
-  flex: 1;
-  max-width: 50%;
-  background-color: rgba(255, 255, 255, 0.834); /* Fondo gris transparente */
-  padding: 20px;
-  border-radius: 10px 0px 0px 10px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centra el contenido verticalmente */
-}
-
-.main-heading {
-  font-size: 3.5em;
-  margin-bottom: 10px;
-  font-family: 'Larken', sans-serif;
-  text-shadow: 4px 4px 6px 4px rgb(255, 255, 255);
-}
-
-.sub-heading {
-  font-size: 1.2em;
-  margin-bottom: 30px;
+.top-section {
+  width: 100%;
   text-align: center;
-  text-shadow: 4px 4px 6px 4px rgb(255, 255, 255);
+  margin-bottom: 20px; /* Ajusta según sea necesario */
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-height: 500px; /* Ajusta esta altura según tus necesidades */
+  overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+}
+
+.home-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra todo el contenedor sin distorsionarse */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .register-button {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #8e44ad; /* Morado */
   color: white; /* Letras blancas */
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  margin-top: 20px; /* Espacio arriba del botón */
+  font-size: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Agrega la transición para el transform */
+  transform-origin: center; /* Define el punto de origen del zoom al centro */
 }
 
 .register-button:hover {
-  background-color: #6c3483; /* Morado más claro */
+  background-color: #b461d4; /* Morado más claro */
+  transform: translateX(-50%) scale(1.3); /* Aplica el efecto de zoom centrado */
 }
 
-.image-container {
-  flex: 1;
+.slider-container {
+  width: 100%; /* Ajusta el tamaño del contenedor del slider */
+  max-width: 1000px; /* Cambia este valor según tus necesidades */
+  margin: auto;
+  margin-bottom: 30px; /* Ajusta el margen inferior para separar del footer */
+}
+
+.slider {
+  width: 100%; /* Ajusta el ancho del slider */
+  overflow: hidden;
+  border-radius: 30px; /* Redondea los bordes del contenedor del slider */
+  box-shadow: 0 4px 8px rgba(128, 111, 129, 0.596); /* Agrega sombra al contenedor del slider */
+}
+
+.slide-track {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin: auto;
+  width: 300%;
+  animation: scroll 45s linear infinite;
 }
 
-.home-image {
-  max-width: 100%;
+.slide {
+  width: 33.33%;
+  flex-shrink: 0;
+  padding: 10px; /* Espacio alrededor de cada tarjeta */
+  box-sizing: border-box; /* Incluye el padding en el tamaño total */
+}
+
+.slide img {
+  width: 100%;
   height: auto;
-  border-radius: 0px 10px 10px 0px;
-  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgb(192, 105, 224); /* Agrega sombra a las imágenes */
+}
+
+@keyframes scroll {
+  0%, 15% { transform: translateX(0); }
+  30%, 45% { transform: translateX(-33.33%); }
+  60%, 75% { transform: translateX(-66.66%); }
+  90%, 100% { transform: translateX(0); }
 }

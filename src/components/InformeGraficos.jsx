@@ -66,7 +66,7 @@ const InformesGrafico = () => {
 
   return (
     <div className="MenuConteiner">
-      <h2>Informes Gráfico</h2>
+      <h2>Informes de datos y Gráficos</h2>
       <div style={{ width: '800px', height: '400px' }}>
         <Bar data={data} options={options} />
       </div>

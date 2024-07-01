@@ -20,9 +20,9 @@ const Footer = () => {
         </button>
         {showSocialMenu && (
           <div className="socialMenu">
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="socialLink">Instagram</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="socialLink">Linkedln</a>
             <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="socialLink">GitHub</a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="socialLink">Facebook</a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="socialLink">WhatsApp</a>
           </div>
         )}
       </div>

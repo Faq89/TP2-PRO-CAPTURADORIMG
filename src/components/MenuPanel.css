@@ -9,16 +9,21 @@ div {
     font-family: 'Larken', sans-serif;
 }
 
-
 /* Sidebar styles */
 .sidebar {
     width: 250px;
-    background: #f8f9fa;
+    background: #b399c4;
     padding: 20px;
     border-right: 1px solid #dee2e6;
-    height: 100vh; /* Ocupa todo el alto de la pantalla */
-    
-    overflow-y: auto; /* Permite desplazamiento si el contenido es mayor que la altura de la pantalla */
+    height: 150%; /* Ocupa todo el alto de la pantalla */
+    overflow-y: absolute; /* Permite desplazamiento si el contenido es mayor que la altura de la pantalla */
+    position: absolute;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
 }
 
 .sidebar ul {
@@ -27,27 +32,47 @@ div {
 }
 
 .sidebar li {
-    margin: 10px 0;
+    margin: 20px 0;
+}
+
+.sidebar li a {
+    color: #ffffff;
+    text-decoration:dotted;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar li a:hover {
+    background-color: #495057;
+    transform: scale(1.05);
 }
 
 /* Main content styles */
 .main-content {
-    /* Deja espacio para la sidebar */
     padding: 20px;
     flex: 1;
-   
-    
+    margin-left: 250px; /* Deja espacio para la sidebar */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.shifted {
+    margin-left: 0;
 }
 
 .MenuConteiner {
     padding: 20px;
     height: 100%;
     overflow: auto; /* Permite desplazamiento si el contenido es mayor que la altura disponible */
-    
 }
 
 .main-content > * {
     max-width: 100%; /* Asegura que el contenido no desborde */
-   
-    
+}
+
+
+.sidebar li a.active {
+    background-color: #495057;
+    color: #ffffff;
 }

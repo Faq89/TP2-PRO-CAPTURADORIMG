@@ -8,6 +8,9 @@ const ImageUploader = () => {
     const [filteredData, setFilteredData] = useState({});
     const [tipoOperacion, setTipoOperacion] = useState('Compra');
     const [showFilteredData, setShowFilteredData] = useState(false);
+    const [showAlert, setShowAlert] = useState(false); // Estado para mostrar alerta de imagen no seleccionada
+    const [showSaveAlert, setShowSaveAlert] = useState(false); // Estado para mostrar alerta de guardado en base de datos
+    const [showDownloadAlert, setShowDownloadAlert] = useState(false); // Estado para mostrar alerta de descarga de datos
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -20,7 +23,10 @@ const ImageUploader = () => {
 
     const analyzeImage = async () => {
         if (!image) {
-            alert("Por favor, selecciona una imagen");
+            setShowAlert(true); // Mostrar alerta si no hay imagen seleccionada
+            setTimeout(() => {
+                setShowAlert(false); // Ocultar alerta después de 2 segundos
+            }, 2000);
             return;
         }
 
@@ -114,7 +120,10 @@ const ImageUploader = () => {
         try {
             // Realizar la solicitud POST a la API para guardar los datos
             await axios.post('http://127.0.0.1:3001/api/facturas', filteredData);
-            alert('Datos guardados en la base de datos correctamente');
+            setShowSaveAlert(true); // Mostrar alerta de guardado en base de datos
+            setTimeout(() => {
+                setShowSaveAlert(false); // Ocultar alerta después de 2 segundos
+            }, 2000);
         } catch (error) {
             console.error('Error al guardar en la base de datos: ', error);
             alert('Error al guardar en la base de datos. Intente nuevamente más tarde');
@@ -142,6 +151,11 @@ const ImageUploader = () => {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+
+            setShowDownloadAlert(true); // Mostrar alerta de descarga de datos
+            setTimeout(() => {
+                setShowDownloadAlert(false); // Ocultar alerta después de 2 segundos
+            }, 2000);
         } else {
             alert('No hay datos filtrados para descargar');
         }
@@ -149,16 +163,19 @@ const ImageUploader = () => {
 
     return (
         <div className="container">
+            <h1 className="title">Registro Automático de Facturas</h1>
             <input type="file" accept="image/jpeg, image/png" onChange={handleImageUpload} />
             {image && <img src={URL.createObjectURL(image)} alt="Uploaded" className="image" />}
-            <div>
-                <label>Tipo de Operación:</label>
-                <select value={tipoOperacion} onChange={handleTipoOperacionChange}>
+            <div className="selectContainer">
+                <label className="label">Tipo de Operación:</label>
+                <select className="select" value={tipoOperacion} onChange={handleTipoOperacionChange}>
                     <option value="Compra">Compra</option>
                     <option value="Venta">Venta</option>
                 </select>
             </div>
-            <button className="AnalizarButton" onClick={analyzeImage}>Analizar imagen</button>
+            <div className="buttonContainer">
+                <button className="button" onClick={analyzeImage}>Analizar imagen</button>
+            </div>
             {text && !showFilteredData && (
                 <pre className="text">{text}</pre>
             )}
@@ -168,14 +185,18 @@ const ImageUploader = () => {
             <div className="filteredData">
                 <h3>Datos Filtrados de la Factura</h3>
                 {Object.keys(filteredData).length > 0 ? (
-                    <button onClick={handleGuardarEnBaseDeDatos}>Guardar en base de datos</button>
+                    <>
+                        <button className="button" onClick={handleGuardarEnBaseDeDatos}>Guardar en base de datos</button>
+                        <button className="button" onClick={downloadFilteredData}>Descargar datos filtrados en TXT</button>
+                    </>
                 ) : (
                     <p>Analiza una imagen para ver los datos filtrados</p>
                 )}
-                {Object.keys(filteredData).length > 0 && (
-                    <button onClick={downloadFilteredData}>Descargar datos filtrados en TXT</button>
-                )}
             </div>
+            {/* Alertas */}
+            <div className={`alert ${showAlert ? 'show' : ''}`}>Por favor, selecciona una imagen válida</div>
+            <div className={`alert ${showSaveAlert ? 'show' : ''}`}>Datos guardados en la base de datos con éxito</div>
+            <div className={`alert ${showDownloadAlert ? 'show' : ''}`}>Datos descargados en TXT con éxito</div>
         </div>
     );
 };

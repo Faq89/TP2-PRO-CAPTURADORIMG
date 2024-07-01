@@ -6,28 +6,40 @@ import './MenuPanel.css'; // Importa el archivo CSS
 import FacturasEdit from './FacturasEdit';
 import InformesGrafico from './InformeGraficos';
 
-
 const MenuPanel = () => {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  const menuItems = [
+    { id: 1, label: 'Registro manual de facturas', path: '/Reg-Manual-Fac' },
+    { id: 2, label: 'Registro con IA de facturas', path: '/Reg-Img-Fac' },
+    { id: 3, label: 'Gestión de Facturas', path: '/Edit-Fac-charge' },
+    { id: 4, label: 'Información de Gráficos', path: '/Ver-inf-graf' },
+  ];
+
   return (
     <Router>
       <div style={{ display: 'flex' }}>
         {/* Sidebar */}
         <div className="sidebar">
           <ul>
-            <li>
-              <Link to="/Reg-Manual-Fac">Reg. Factura Manual</Link>
-            </li>
-            <li>
-              <Link to="/Reg-Img-Fac">Reg Img Factura</Link>
-            </li>
-            <li>
-              <Link to="/Edit-Fac-charge">Ver Facturas</Link>
-            </li>
-            <li>
-              <Link to="/Ver-inf-graf">Inf. Grafico</Link>
-            </li>
+            {menuItems.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={item.path}
+                  className={selectedItem === item.id ? 'active' : ''}
+                  onClick={() => handleItemClick(item.id)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
+
 
         {/* Main Content */}
         <div className="main-content">

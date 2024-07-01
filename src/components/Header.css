@@ -6,6 +6,7 @@
   background-color: #333;
   color: white;
   position: relative; /* Asegura que los elementos absolutos se alineen correctamente */
+  z-index: 2; 
 }
 
 .logo {

@@ -9,6 +9,15 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.floating-alert {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Ajusta según sea necesario para que esté por encima del resto del contenido */
+  width: 400px; /* Ancho deseado del alert */
+}
+
 h2 {
   margin-top: 0px;
   margin-bottom: 4px;
