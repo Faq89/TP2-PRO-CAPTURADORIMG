@@ -4,8 +4,8 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DownloadIcon from '@mui/icons-material/GetApp'; // Importa el icono de descarga
 import "./FacturasEdit.css";
-
 
 const FacturasEdit = () => {
   const [facturas, setFacturas] = useState([]);
@@ -60,6 +60,32 @@ const FacturasEdit = () => {
       console.error("Error al eliminar la factura:", error);
       showAlert("Error al eliminar la factura", "error");
     }
+  };
+
+  const handleDownload = (factura) => {
+    const generarTextoFactura = (factura) => {
+      const { fechaFacturacion, puntoVenta, numeroComprobante, cuit, razonSocial, importeTotal, iva } = factura;
+  
+      const fechaFormateada = fechaFacturacion.padEnd(8, '0');
+      const puntoVentaFormateado = puntoVenta.padStart(5, '0');
+      const numeroComprobanteFormateado = numeroComprobante.padStart(8, '0');
+      const cuitFormateado = cuit.padStart(11, '0');
+      const razonSocialFormateada = razonSocial.padEnd(40, ' ');
+      const importeTotalFormateado = importeTotal.toString().padStart(15, '0');
+      const ivaFormateado = iva.toString().padStart(15, '0');
+  
+      const textoFactura = `${fechaFormateada}${puntoVentaFormateado}${numeroComprobanteFormateado}${cuitFormateado}${razonSocialFormateada}0000000${importeTotalFormateado}0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000PES00010000002000000000${ivaFormateado}0000000000000000000000000                              000000000000000`;
+  
+      return textoFactura;
+    };
+  
+    const textoFactura = generarTextoFactura(factura);
+    const blob = new Blob([textoFactura], { type: 'text/plain' });
+    const link = document.createElement('a');
+    const fileName = factura.tipoOperacion === 'compra' ? 'iva_compra.txt' : 'iva_venta.txt';
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
   };
 
   const handleChange = (e) => {
@@ -261,8 +287,9 @@ const FacturasEdit = () => {
                 <td>{factura.iva}</td>
                 <td>{factura.importeTotal}</td>
                 <td className="actions-column">
-                <EditIcon className="edit-icon" onClick={() => handleEdit(index)} />
-                <DeleteIcon className="delete-icon" onClick={() => handleDelete(index)} />
+                  <EditIcon className="edit-icon" onClick={() => handleEdit(index)} />
+                  <DeleteIcon className="delete-icon" onClick={() => handleDelete(index)} />
+                  <DownloadIcon className="download-icon" onClick={() => handleDownload(factura)} /> {/* Icono de descarga */}
                 </td>
               </tr>
             ))}

@@ -41,6 +41,13 @@
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    margin-right: 30px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .button {
@@ -52,10 +59,12 @@
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    width: 100%;
     margin-top: 20px;
-    
+    width: auto; /* Ajusta el ancho automáticamente */
+    margin-left: 40px;
   }
+  
+  
   
   .button:hover {
     background-color: #6c3483;
@@ -87,4 +96,3 @@
     z-index: 1000;
     width: 300px; /* Ajusta según el diseño deseado */
   }
-  

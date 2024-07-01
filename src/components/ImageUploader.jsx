@@ -11,7 +11,6 @@ const ImageUploader = () => {
     const [showFilteredData, setShowFilteredData] = useState(false);
     const [showAlert, setShowAlert] = useState(false); // Estado para mostrar alerta de imagen no seleccionada
     const [showSaveAlert, setShowSaveAlert] = useState(false); // Estado para mostrar alerta de guardado en base de datos
-    const [showDownloadAlert, setShowDownloadAlert] = useState(false); // Estado para mostrar alerta de descarga de datos
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -127,35 +126,6 @@ const ImageUploader = () => {
         }
     };
 
-    const downloadFilteredData = () => {
-        if (Object.keys(filteredData).length > 0) {
-            const textData = `Tipo de Operación: ${filteredData.tipoOperacion}\n` +
-                             `Razón Social: ${filteredData.razonSocial}\n` +
-                             `CUIT: ${filteredData.cuit}\n` +
-                             `Tipo de Factura: ${filteredData.tipoFactura}\n` +
-                             `Fecha de Facturación: ${filteredData.fechaFacturacion}\n` +
-                             `Punto de Venta: ${filteredData.puntoVenta}\n` +
-                             `Número de Comprobante: ${filteredData.numeroComprobante}\n` +
-                             `Importe Total Neto: ${filteredData.importeTotalNeto}\n` +
-                             `IVA: ${filteredData.iva}\n` +
-                             `Importe Total: ${filteredData.importeTotal}`;
-
-            const blob = new Blob([textData], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'factura_filtrada.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-
-            setShowDownloadAlert(true); // Mostrar alerta de descarga de datos
-            setTimeout(() => setShowDownloadAlert(false), 2000); // Ocultar alerta después de 2 segundos
-        } else {
-            alert('No hay datos filtrados para descargar');
-        }
-    };
-
     return (
         <div className="container">
             <h2>Registro Automático de Facturas</h2>
@@ -179,13 +149,8 @@ const ImageUploader = () => {
             )}
             <div className="filteredData">
                 <h3>Datos Filtrados de la Factura</h3>
-                {Object.keys(filteredData).length > 0 ? (
-                    <>
-                        <button className="button" onClick={handleGuardarEnBaseDeDatos}>Registrar</button>
-                        <button className="button" onClick={downloadFilteredData}>Descargar</button>
-                    </>
-                ) : (
-                    <p></p>
+                {Object.keys(filteredData).length > 0 && (
+                    <button className="button" onClick={handleGuardarEnBaseDeDatos}>Registrar</button>
                 )}
             </div>
             {/* Snackbar para mostrar alertas */}
@@ -197,11 +162,6 @@ const ImageUploader = () => {
             <Snackbar open={showSaveAlert} autoHideDuration={2000} onClose={() => setShowSaveAlert(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
                 <Alert severity="success" onClose={() => setShowSaveAlert(false)}>
                     Éxito: Datos guardados en la base de datos
-                </Alert>
-            </Snackbar>
-            <Snackbar open={showDownloadAlert} autoHideDuration={2000} onClose={() => setShowDownloadAlert(false)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-                <Alert severity="success" onClose={() => setShowDownloadAlert(false)}>
-                    Éxito: Datos descargados en TXT
                 </Alert>
             </Snackbar>
         </div>
