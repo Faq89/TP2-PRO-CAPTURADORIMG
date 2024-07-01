@@ -9,7 +9,7 @@ const Nosotros = () => {
       <img src="src/assets/pricopia.jpg" alt="Imagen Principal" className="main-image" />
       <div className="content">
         <div className="text">
-          <h2>Quiénes Somos</h2>
+          <h2>Nuestros Integrantes</h2>
           <p>
             Somos un equipo apasionado por la tecnología y los negocios, combinando habilidades y conocimientos de diversos campos académicos para ofrecer soluciones innovadoras y efectivas.
           </p>
