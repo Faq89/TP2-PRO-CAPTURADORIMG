@@ -28,7 +28,7 @@ const ImageUploader = () => {
             return;
         }
 
-        const subscriptionKey = 'ef2e30c734e24e5995561b165c46c5a0';
+        const subscriptionKey = 'TuKey';
         const endpoint = 'https://appfacturas.cognitiveservices.azure.com/';
         const uriBase = endpoint + 'vision/v3.0/ocr';
 
